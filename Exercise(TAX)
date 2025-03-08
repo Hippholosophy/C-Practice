@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main (){
+
+float Gross_Salary;
+float Tax_Due;
+float Total_Salary;
+
+printf("The Gross Salary is:");
+scanf("%f",&Gross_Salary);
+
+
+
+if(Gross_Salary<=50000){
+Tax_Due= 0.10 * Gross_Salary;
+
+}else if (Gross_Salary<=100000){
+Tax_Due= (0.15* Gross_Salary) + 5000;
+
+}else if (Gross_Salary<=200000){
+Tax_Due= (0.20* Gross_Salary) + 15000;
+
+}else {
+
+Tax_Due= 0.25 * Gross_Salary;
+
+}
+
+Total_Salary= Gross_Salary - Tax_Due;
+
+
+printf("\nThe amount of Tax Due is %.2f",Tax_Due);
+
+printf("\nThe amount of Net Salary is %.2f",Total_Salary);
+
+return 0;
+
+} 
+
