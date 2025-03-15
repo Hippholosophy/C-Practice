@@ -1,0 +1,73 @@
+#include <stdio.h>
+int main () {
+
+int TimeInHours,TimeInMinutes,TimeOutHours,TimeOutMinutes;
+int Total_In_Minutes,Total_Out_Minutes,Non_Rounded_Parking;
+float Total_Parking;
+char TypeOfVechile;
+float Fee;
+
+
+printf ("Type of vehicle 	 	 : Car=C,Truck=T,Bus=B:");
+scanf("%c",&TypeOfVechile);
+
+printf("Entered Vechile (Hours) : ");
+scanf("%d",&TimeInHours);
+
+printf("Entered Vechile (Minutes) : ");
+scanf("%d",&TimeInMinutes);
+
+printf("Exit Vechile (Hours) : ");
+scanf("%d",&TimeOutHours);
+
+printf("Exit Vechile (Minutes) : ");
+scanf("%d",&TimeOutMinutes);
+
+Total_In_Minutes= TimeInHours * 60 + TimeInMinutes;
+Total_Out_Minutes= TimeOutHours * 60 + TimeOutMinutes;
+Non_Rounded_Parking= Total_Out_Minutes - Total_In_Minutes;
+Total_Parking= (Total_Out_Minutes-Total_In_Minutes) / 60;
+
+if(TypeOfVechile == 'C'){
+ printf("\nVECHILE:Car");
+ if(Total_Parking<=3){
+ Fee=0.00;
+ } else{
+ Fee= (Total_Parking - 3) *10.00;
+}
+
+} else if(TypeOfVechile == 'T'){
+ printf("\nVECHILE:Truck");
+ if(Total_Parking<=2) {	
+ Fee= Total_Parking *30.00;
+ } else{
+ Fee= 2 * 30.0 + (Total_Parking - 2)* 15.25;
+ }
+} else if(TypeOfVechile == 'B'){
+  printf("\nVECIHLE:Bus");
+ if(Total_Parking ==1) {
+ Fee= Total_Parking * 60;
+ } else{
+ Fee= 1 * 60.0 + (Total_Parking - 1)* 30.15;
+ }
+}
+
+
+printf("\nPARKING LOT CHARGE SYSTEM");
+printf(" ");
+
+printf("\nType of vechile: %c",TypeOfVechile);	
+printf("\nTIME-IN     : %d%d",TimeInHours,TimeInMinutes);
+printf("\nTIME-OUT    : %d:%d",TimeOutHours,TimeOutMinutes);
+printf(" ");
+
+printf("\nPARKING TIME : %d",Non_Rounded_Parking);
+printf("\nROUNDED TOTAL : %.2f",Total_Parking);
+printf(" ");
+
+printf("\nTOTAL CHARGES :%.2f",Fee);
+
+return 0;
+
+}
+
