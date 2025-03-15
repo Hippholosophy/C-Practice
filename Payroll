@@ -1,0 +1,45 @@
+Create a program that will mimic a payroll system.
+	
+Specifications
+	- Input Employees ID Number, Lastname, Firstname, Middle Initial 
+	- Regular working hours is 120
+	- Regular Rate per day is P490.88 if employment status is (R) Regular, P420.30 for (P) Probationary, P380.56 for (C) Casual and P300.10 for (PT) Part Timers.
+	- Rate per Overtime hours is 1 1/2 of its regular rate per hour
+	- W/Tax is 15.75% of the Gross Earnings if Status is (S) Single, 10.12% for "M" Married, 12.35% for "W" Widow, otherwise 12.60%
+	- SSS deduction is 11.5% if Gross Earning is greater or equal to P12,000 and 9.16% if lesser than P9,500, otherwise 10.5%
+	-PhilHealth deduction is 420 if G.E is greater or equal to 12,000 and 290 if lesser than P9,500, otherwise 380.
+	-Pag-Ibig 3.75% of the G.E for Married, 2.75% for single, else 2.55%
+
+Display the following:
+INPUT:
+Employee I.D (Any)
+Name (Last, First, M.I)
+Civil Status (S,M,W)
+Employment Status (R,P,C,PT)
+Hours Worked (max 120) 
+
+
+
+SOLUTIONS:
+	- Civil Status ( S, M, W)
+	- Employement Status ( 490.88=R, 420.30=P,380.56=C,300.10=PT )
+	- Hours worked (float needs %.2f)( 120/24) [if 4.5 rounds up to 4] 
+	- Regular rate per hour ( Rate per day/24)
+	- Earnings
+		- Basic Pay ( 490.88=R, 420.30=P,380.56=C,300.10=PT )
+		- Overtime Pay (Regular Rate x 1.5 per hour)
+	- Deductions
+		- W/Tax ( [if Civil Status==S (15.75%) ] [else if Civil Status == M (10.12%)] [else if Civil Status == W (12.35%)] [else (12.60% ] 
+		- SSS ( [if G.E>=12,000 (11.5%) ] [else if G.E<=9.500 (9.16%) ] [else (10.5%);]
+		- PhilHealth ( [if G.E>= 12,000(420) ] [else if G.E <=9,500 (290) ]  [else (380);] 
+		- Pag-ibig ( [if Civil Status==S (2.75%) ] [else if Civil Status==M (3.75%) ] [else (2.55%) ]; )
+	- Gross Earnings (First before Deductions)
+	- Total Deductions (All Deductions plus)
+	- Net Earnings (Gross Earnings - Total Deductions)
+
+Display the result to another page in a tabular for
+
+OUTPUT:
+Employee I.D | Name             | Civil Status | Employment Status | (24 hours per pay)Hours Worked | Regular rate per hour     | Earnings                                                   | Deductions
+  234234234  | Last , First, M.I| (S,M,W)     | (R,P,C,PT)        | (120 Normal)                    | (regular pay per day / 24)| Basic Pay(Per day depending on Employment status)          | W/ Tax (Depending on the Civil Status)
+                                                                   |                                |                           | Overtime Pay (if-else) (Have to put Overtime pay in start) |            
