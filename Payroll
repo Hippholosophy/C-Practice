@@ -3,12 +3,13 @@ int main (){
 
 int Employee_ID;
 char Last_Name[30],First_Name[30], Middle_Innitial[30];
-char Civil_Status = S,M,W;
-char Employment_Status = R,P,C,PT;       
+char Civil_Status;
+char Employment_Status;       
 int Hours_Worked,Overtime_Hours;
 
 float Gross_Earnings,Deduction,Net_Earnings;
 float Per_Hour,Per_Day,Overtime_Pay,Tax,SSS_Tax,Phil_Tax,PagIbig_Tax;
+
 
 const float REGULAR_PER_DAY = 490.88;
 const float PROBATIONARY_PER_DAY = 420.30;
@@ -19,19 +20,19 @@ printf ("Put the Employee I.D:\n");
 scanf("%d",&Employee_ID);
 
 printf("Put the Last Name of The Employee:\n");
-scanf("%s",&Last_Name);
+scanf("%s",Last_Name);
 
 printf("Put the First Name of the Employee:\n");
-scanf("%s",&First_Name);
+scanf("%s",First_Name);
 
 printf("Put the Middle Innitial of the Employee:\n");
-scanf("%s",&Middle_Innitial);
+scanf("%s",Middle_Innitial);
 
 printf("Put the Civil Status of the Employee(S=Single,M=Married,W=Widow):\n");
-scanf("%c",&Civil_Status);
+scanf(" %c",&Civil_Status);
 
-printf("Put the Employment Status of the Employee(R=Regular,P=Probationary,C=Casual,PT=PartTime):\n");
-scanf("%c",&Employment_Status);
+printf("Put the Employment Status of the Employee(R=Regular,P=Probationary,C=Casual,T=PartTime):\n");
+scanf(" %c",&Employment_Status);
 
 printf("Put the Hours Worked of the Employee:\n");
 scanf("%d",&Hours_Worked);
@@ -41,13 +42,13 @@ scanf("%d",&Overtime_Hours);
 
 
 
-if (Employment_Status ==R) {
+if (Employment_Status == 'R') {
 Per_Hour = REGULAR_PER_DAY / 24;
-} else if (Employment_Status ==P) {
+} else if (Employment_Status == 'P') {
 Per_Hour = PROBATIONARY_PER_DAY / 24;
-} else if (Employment_Status ==C) {
+} else if (Employment_Status == 'C') {
 Per_Hour = CASUAL_PER_DAY / 24;
-} else if (Employment_Status ==PT){
+} else if (Employment_Status == 'T'){
 Per_Hour = PART_PER_DAY / 24;
 } else {
   0;
@@ -56,50 +57,39 @@ Per_Hour = PART_PER_DAY / 24;
  
 
 
-if (Employment_Status == R){
-Per_Day = 490.88;
-} else if (Employment_Status == P){
-Per_Day = 420.30;
-} else if (Employment_Status == C){
-Per_Day = 380.56;
-} else if (Employment_Status == PT){
-Per_Day = 300.10;
+if (Employment_Status == 'R'){
+Per_Day = REGULAR_PER_DAY;
+} else if (Employment_Status == 'P'){
+Per_Day = PROBATIONARY_PER_DAY;
+} else if (Employment_Status == 'C' ){
+Per_Day = CASUAL_PER_DAY;
 } else {
-  0;
+  Per_Day = PART_PER_DAY;
  }
 
-if (Employment_Status == R){
 Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
-} else if (Employment_Status == P){
-Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
-} else if (Employment_Status == C){
-Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
-} else if (Employment_Status == PT){
-Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
-} else {
-  0;
- }
- 
+
 Gross_Earnings = Hours_Worked * Per_Hour + Overtime_Pay;
     
-if (Civil_Status == S){
+if (Civil_Status == 'S'){
 Tax = Gross_Earnings * 0.1575;
-} else if (Civil_Status == M){
+} else if (Civil_Status == 'M'){
 Tax = Gross_Earnings * 0.1012;
-} else if (Civil_Status == W){
+} else if (Civil_Status == 'W'){
 Tax = Gross_Earnings * 0.1235;
 } else {
- Gross_Earnings * 0.1260;
+ Tax = Gross_Earnings * 0.1260;
  }
  
  
 if(Gross_Earnings>=12000){
 SSS_Tax = Gross_Earnings * 0.1150;
 } else if(Gross_Earnings<=9500){
-SSS_Tax = Gross_Earnings * 0.916;
+SSS_Tax = Gross_Earnings * 0.0916;
 } else {
  SSS_Tax = Gross_Earnings * 0.1050;
  }
+ 
  
 
  if(Gross_Earnings>=12000){
@@ -111,12 +101,12 @@ SSS_Tax = Gross_Earnings * 0.916;
  }
  
  
- if(Civil_Status == S){
- PagIbig_Tax = Gross_Earnings * 0.275;
- } else if(Civil_Status == M){
- PagIbig_Tax = Gross_Earnings * 0.375;
+ if(Civil_Status == 'S'){
+ PagIbig_Tax = Gross_Earnings * 0.0275;
+ } else if(Civil_Status == 'M'){
+ PagIbig_Tax = Gross_Earnings * 0.0375;
  } else { 
- PagIbig_Tax = Gross_Earnings * 0.255;
+ PagIbig_Tax = Gross_Earnings * 0.0255;
  }
  
  Deduction = Tax + SSS_Tax + Phil_Tax + PagIbig_Tax;
@@ -153,4 +143,3 @@ printf("Net Earnings:%.2f\n",Net_Earnings);
 return 0;
 
 }
-
