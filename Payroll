@@ -1,45 +1,163 @@
-Create a program that will mimic a payroll system.
-	
-Specifications
-	- Input Employees ID Number, Lastname, Firstname, Middle Initial 
-	- Regular working hours is 120
-	- Regular Rate per day is P490.88 if employment status is (R) Regular, P420.30 for (P) Probationary, P380.56 for (C) Casual and P300.10 for (PT) Part Timers.
-	- Rate per Overtime hours is 1 1/2 of its regular rate per hour
-	- W/Tax is 15.75% of the Gross Earnings if Status is (S) Single, 10.12% for "M" Married, 12.35% for "W" Widow, otherwise 12.60%
-	- SSS deduction is 11.5% if Gross Earning is greater or equal to P12,000 and 9.16% if lesser than P9,500, otherwise 10.5%
-	-PhilHealth deduction is 420 if G.E is greater or equal to 12,000 and 290 if lesser than P9,500, otherwise 380.
-	-Pag-Ibig 3.75% of the G.E for Married, 2.75% for single, else 2.55%
+#include <stdio.h>
+int main (){
 
-Display the following:
-INPUT:
+int Employee_ID;
+char Last_Name[30],First_Name[30], Middle_Innitial[30];
+char Civil_Status = S,M,W;
+char Employment_Status = R,P,C,PT;       
+int Hours_Worked,Overtime_Hours,;
+
+float Regular_Per_Hour,Probationary_Per_Hour,Casual_Per_Hour,Part_Per_Hour;
+float Per_Hour,Per_Day,Overtime_Pay,Tax,SSS_Tax,Phil_Tax,PagIbig_Tax,Deduction,Net_Earnings;
+
+const float REGULAR_PER_DAY = 490.88;
+const float PROBATIONARY_PER_DAY = 420.30;
+const float CASUAL_PER_DAY = 380.56;
+const float PART_PER_DAY= 300.10;
+/*
 Employee I.D (Any)
 Name (Last, First, M.I)
 Civil Status (S,M,W)
 Employment Status (R,P,C,PT)
 Hours Worked (max 120) 
+Overtime Hours 
+*/
+printf ("Put the Employee I.D:\n");
+scanf("%d",&Employee_ID);
+
+printf("Put the Last Name of The Employee:\n");
+scanf("%s",&Last_Name);
+
+printf("Put the First Name of the Employee:\n");
+scanf("%s",&First_Name);
+
+printf("Put the Middle Innitial of the Employee:\n");
+scanf("%s",&Middle_Innitial);
+
+printf("Put the Civil Status of the Employee(S=Single,M=Married,W=Widow):\n");
+scanf("%c",&Civil_Status);
+
+printf("Put the Employment Status of the Employee(R=Regular,P=Probationary,C=Casual,PT=PartTime):\n");
+scanf("%c",&Employment_Status);
+
+printf("Put the Hours Worked of the Employee:\n");
+scanf("%d",&Hours_Worked);
+
+printf("Put the OverTime Hours Worked of the Employee:\n");
+scanf("%d",&Overtime_Hours);
 
 
 
-SOLUTIONS:
-	- Civil Status ( S, M, W)
-	- Employement Status ( 490.88=R, 420.30=P,380.56=C,300.10=PT )
-	- Hours worked (float needs %.2f)( 120/24) [if 4.5 rounds up to 4] 
-	- Regular rate per hour ( Rate per day/24)
-	- Earnings
-		- Basic Pay ( 490.88=R, 420.30=P,380.56=C,300.10=PT )
-		- Overtime Pay (Regular Rate x 1.5 per hour)
-	- Deductions
-		- W/Tax ( [if Civil Status==S (15.75%) ] [else if Civil Status == M (10.12%)] [else if Civil Status == W (12.35%)] [else (12.60% ] 
-		- SSS ( [if G.E>=12,000 (11.5%) ] [else if G.E<=9.500 (9.16%) ] [else (10.5%);]
-		- PhilHealth ( [if G.E>= 12,000(420) ] [else if G.E <=9,500 (290) ]  [else (380);] 
-		- Pag-ibig ( [if Civil Status==S (2.75%) ] [else if Civil Status==M (3.75%) ] [else (2.55%) ]; )
-	- Gross Earnings (First before Deductions)
-	- Total Deductions (All Deductions plus)
-	- Net Earnings (Gross Earnings - Total Deductions)
+if (Employment_Status == R) {
+Per_Hour = REGULAR_PER_DAY / 24;
+} else if (Employment_Status == P) {
+Per_Hour = PROBATIONARY_PER_DAY / 24;
+} else if (Employment_Status == C) {
+Per_Hour = CASUAL_PER_DAY / 24;
+} else if (Employment_Status == PT){
+Per_Hour = PART_PER_DAY / 24;
+} else {
+  0;
+ }
+ 
+ 
 
-Display the result to another page in a tabular for
 
-OUTPUT:
-Employee I.D | Name             | Civil Status | Employment Status | (24 hours per pay)Hours Worked | Regular rate per hour     | Earnings                                                   | Deductions
-  234234234  | Last , First, M.I| (S,M,W)     | (R,P,C,PT)        | (120 Normal)                    | (regular pay per day / 24)| Basic Pay(Per day depending on Employment status)          | W/ Tax (Depending on the Civil Status)
-                                                                   |                                |                           | Overtime Pay (if-else) (Have to put Overtime pay in start) |            
+if (Employment_Status == R){
+Per_Day = 490.88;
+} else if (Employment_Status == P){
+Per_Day = 420.30;
+} else if (Employment_Status == C){
+Per_Day = 380.56;
+} else if (Employment_Status == PT){
+Per_Day = 300.10;
+} else {
+  0;
+ }
+
+if (Employment_Status == R){
+Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
+} else if (Employment_Status == P){
+Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
+} else if (Employment_Status == C){
+Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
+} else if (Employment_Status == PT){
+Overtime_Pay = (Per_Hour * 1.5) * Overtime_Hours;
+} else {
+  0;
+ }
+ 
+Gross_Earnings = Hours_Worked * Per_Hour + Overtime_Pay;
+    
+if (Civil_Status == S){
+Tax = Gross_Earnings * 0.1575;
+} else if (Civil_Status == M){
+Tax = Gross_Earnings * 0.1012;
+} else if (Civil_Status == W){
+Tax = Gross_Earnings * 0.1235;
+} else {
+ Gross_Earnings * 0.1260;
+ }
+ 
+ SSS ( [if G.E>=12,000 (11.5%) ] [else if G.E<=9.500 (9.16%) ] [else (10.5%);]
+
+if(Gross_Earnings>=12000){
+SSS_Tax = Gross_Earnings * 0.1150;
+} else if(Gross_Earnings<=9500){
+SSS_Tax = Gross_Earnings * 0.916;
+} else {
+ SSS_Tax = Gross_Earnings * 0.1050;
+ }
+ 
+
+ if(Gross_Earnings>=12000){
+ Phil_Tax = 420;
+ } else if(Gross_Earnings<9500){
+ Phil_Tax = 290;
+ } else {
+ Phil_Tax = 380;
+ }
+ 
+ 
+ if(Civil_Status == S){
+ PagIbig_Tax = Gross_Earnings * 0.275;
+ } else if(Civil_Status == M){
+ PagIbig_Tax = Gross_Earnings * 0.375;
+ } else { 
+ PagIbig_Tax = Gross_Earnings * 0.255;
+ }
+ 
+ Deduction = Tax + SSS_Tax + Phil_Tax + PagIbig_Tax;
+ 
+ Net_Earnings = Gross_Earnings - Deduction;
+ 
+
+ 
+ 
+ 
+
+
+printf("Employee I.D       Name                        Civil Status  Employment Status  Hours Worked Regular Rate Per Hour   \n");
+printf("---------------------------------------------------------------------------------------------------------------------\n");
+printf("%d                 %s,%s,%s                    %c             %c                  %d           %.2f                                    \n",Employee_ID,Last_Name,First_Name,Middle_Innitial,Civil_Status,Employment_Status,Hours_Worked,Per_Hour);
+
+
+
+printf("\n");
+printf("\n");                                                                 
+printf(" Earnings                                                     Deductions                                               \n");
+printf("---------------------------------------------------------------------------------------------------------------------  \n");
+printf("Basic Pay:%.2f                                                W/Tax:%.2f                                                 \n",Per_Day,Tax);
+printf("Overtime Pay:%.2f                                                 SSS:%.2f                                                   \n",Overtime_Pay,SSS_Tax);
+printf("                                                               PhilHealth:%.2f                                              \n",Phil_Tax);
+printf("                                                               Pag-ibig:%.2f                                                \n",PagIbig_Tax);
+printf("\n");
+printf("\n");
+
+printf("Gross Earnings:%.2f\n",Gross_Earnings);
+printf("Deductions:%.2f\n",Deduction);
+printf("Net Earnings:\n",Net_Earnings);
+
+return 0;
+
+}
