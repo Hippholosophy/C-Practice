@@ -1,0 +1,108 @@
+#include <stdio.h>  
+ 
+int  main()  
+{  
+    int A = 10;
+    int arr[10]; 
+    int i;	
+	int Best = 0;
+	int sum = 0; 
+	int Worst; 
+	int add=0;
+	int subtract=0;
+	int count =0;
+	int counts =0;
+    printf("PUT 10 ELEMENTS :\n");  
+    for(i=0; i<10; i++)  
+    {  
+       
+	    printf("\t%d:", i + 1);
+	    scanf("%d", &arr[i]);  
+    }  
+ 
+    printf("\nTHE NUMBERS ARE: ");  
+    for(i=0; i<10; i++)  
+    {  
+        printf("%d  ", arr[i]);  
+    } 
+    
+	/*sum of all numbers */
+	for (i=0; i<10; i++)
+	{
+	
+	 add += arr[i];
+	  
+	}
+	
+	printf("\nYour sum of all numbers is %d:",add);
+	
+	
+
+	
+	printf("\nYour negative sum is %d:",subtract);
+	
+	/* Greatest number */
+	for (i=0; i<10; i++)
+	{
+	
+	
+	if ( arr[i] > Best ) Best = arr[i];
+	
+	}
+	
+	printf("\nYOur best number is: %d",Best);
+	
+	/* Smallest Number */
+	for (i=0; i<10; i++)
+	{
+	
+	if (arr[i] < Worst ) Worst = arr[i];
+}
+	
+	printf("\nYOUR WORST IS %d ",Worst);
+	
+	
+	/* Sum of all positive integers */
+	for(i=0; i<10; i++)
+	{
+	
+	if (arr[i] > 0 ) sum+= arr[i];
+	
+	}
+	
+	printf("\nYour positive sum is %d",sum);	
+	
+	
+	/* Sum of all negative integers */
+	for (i=0; i<10; i++)
+	{
+	
+	if (arr[i] < 0 ) subtract += arr[i];
+	
+	}	   
+    
+	printf("\nYour sum of all negative integers is %d",subtract);
+
+	
+		/* Your amount of negative integers */
+	for (i=0; i<10; i++)
+	{
+	
+	if (arr[i] < 0 ) count++;
+	}
+	
+	printf("\nThe amount of negative integers is %d:",count);
+	
+		/*Your amount of 50 to 100 numbers */
+	for (i=0; i<10; i++)
+	{
+	
+	if (arr[i] >= 50 && arr[i] <= 100) counts++;
+	}
+	
+	printf("\nYour amount of numbers from 50 to 100 is %d",counts);
+	
+	return 0;
+	
+}
+
